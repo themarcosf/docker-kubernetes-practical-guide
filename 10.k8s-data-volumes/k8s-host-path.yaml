@@ -1,0 +1,56 @@
+# merged config file for deployment and service
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend
+  labels:
+    app: k8s-demo
+    tier: backend
+spec:
+  selector:
+    app: k8s-demo
+    tier: backend
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3000
+  type: LoadBalancer
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k8s-demo
+  labels:
+    app: k8s-demo
+    tier: backend
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: k8s-demo
+      tier: backend
+  template:
+    metadata:
+      labels:
+        app: k8s-demo
+        tier: backend
+    spec:
+      containers:
+        - name: k8s-demo
+          image: mfinteli/k8s-demo:latest
+          imagePullPolicy: Always
+          volumeMounts:
+            - mountPath: /app/story
+              name: k8s-demo-storage
+          livenessProbe:
+            httpGet:
+              path: /story
+              port: 3000
+            initialDelaySeconds: 5
+            periodSeconds: 5
+      volumes:
+        - name: k8s-demo-storage
+          hostPath:
+            path: /tmp/story
+            type: DirectoryOrCreate

@@ -1,0 +1,8 @@
+kubectl get pv
+  : shows the persistent volumes
+
+kubectl get pvc
+  : shows the persistent volume claims
+
+kubectl get configmap
+  : shows the config maps

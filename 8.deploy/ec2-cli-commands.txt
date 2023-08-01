@@ -1,0 +1,18 @@
+1. install Docker on a virtual EC2 instance:
+
+sudo yum update -y
+sudo yum -y install docker
+ 
+sudo service docker start
+ 
+sudo usermod -a -G docker ec2-user
+
+2. log out + back in after running these commands
+
+3. once logged back in:
+
+sudo systemctl enable docker
+
+4. check whether Docker is available by running:
+
+docker version

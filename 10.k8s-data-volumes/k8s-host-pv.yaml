@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: k8s-host-pv
+spec:
+  capacity:
+    storage: 10Mi
+  volumeMode: Filesystem
+  storageClassName: standard
+  accessModes:
+    - ReadWriteOnce # read write access only by a single node
+    # - ReadWriteMany     # can be mounted by many nodes
+    # - ReadOnlyMany      # can be mounted by many nodes
+  hostPath:
+    path: /data/k8s-host-pv
+    type: DirectoryOrCreate

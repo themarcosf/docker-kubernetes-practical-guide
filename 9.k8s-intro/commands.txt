@@ -1,0 +1,55 @@
+++ Imperative approach ++
+
+kubectl create deployment <NAME> --image=<REMOTE_IMAGE_URL>
+  : creates a deployment with a single pod
+
+kubectl get deployments
+  : shows the deployments in the cluster
+
+kubectl get pods
+  : shows the pods in the cluster
+
+kubectl delete deployment <NAME>
+  : deletes the deployment
+
+kubectl expose deployment <NAME> --type=LoadBalancer --port=<PORT>
+  : exposes the deployment to the outside world
+      type: ClusterIP, NodePort, LoadBalancer, ExternalName
+
+kubectl get services
+  : shows the services in the cluster
+
+kubectl delete service <NAME>
+  : deletes the service from the cluster
+
+minikube service <NAME>
+  : creates a tunnel to the service
+
+kubectl scale deployment <NAME> --replicas=<NUMBER>
+  : scales the deployment to the specified number of pods
+
+kubectl set image deployment/<NAME> <CONTAINER_NAME>=<REMOTE_IMAGE_URL>
+  : updates the image of the deployment
+  : only works if the image tag is updated
+
+kubectl rollout status deployment/<NAME>
+  : shows the status of the rollout
+
+kubectl rollout undo deployment/<NAME>
+kubectl rollout undo deployment/<NAME> --to-revision=<NUMBER>
+  : rolls back to the previous version or to the specified version
+
+kubectl rollout history deployment/<NAME>
+kubectl rollout history deployment/<NAME> --revision=<NUMBER>
+  : shows the history of the deployment or the specified revision
+
+++ Declarative approach ++
+
+kubectl apply -f <FILE_NAME>
+  : creates or updates the resource(s) in the cluster
+
+kubectl delete -f <FILE_NAME>
+  : deletes the resource(s) from the cluster
+
+kubectl delete <RESOURCES> -l <LABEL_KEY>=<LABEL_VALUE>
+  : deletes the resource(s) with the specified label

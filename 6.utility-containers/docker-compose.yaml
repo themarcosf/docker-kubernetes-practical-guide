@@ -1,0 +1,11 @@
+version: "3.8"
+services:
+  npm:
+    image: node:14.15.4-alpine3.12
+    container_name: npm
+    working_dir: /src
+    volumes:
+      - ./:/src
+    entrypoint: ["npm"]
+    stdin_open: true
+    tty: true

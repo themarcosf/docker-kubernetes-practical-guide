@@ -1,0 +1,3 @@
+/Users/<user>/.kube
+cli: aws config
+cli: aws eks --region <region> update-kubeconfig --name <cluster-name>

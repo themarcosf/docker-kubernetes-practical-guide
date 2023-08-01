@@ -1,0 +1,5 @@
+If image built on MacBook M1 chip:
+
+ERROR: The requested image's platform (linux/arm64/v8) does not match the detected host platform (linux/amd64) and no specific platform was requested
+
+FIX: docker buildx build --platform linux/amd64 -t <dockerhub-account>/<repository> .

@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k8s-demo
+  labels:
+    app: k8s-demo
+    tier: frontend
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: k8s-demo
+      tier: frontend
+  template:
+    metadata:
+      labels:
+        app: k8s-demo
+        tier: frontend
+    spec:
+      containers:
+        - name: k8s-demo
+          image: mfinteli/k8s-demo:latest

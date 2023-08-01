@@ -1,0 +1,15 @@
+# merged config file for deployment and service
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: k8s-host-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Mi
+  volumeMode: Filesystem
+  storageClassName: standard
+  volumeName: k8s-host-pv
